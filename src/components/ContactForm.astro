@@ -1,6 +1,5 @@
 ---
 ---
-<script src="https://unpkg.com/@botpoison/browser" async></script>
 <section class="contact-section">
   <div class="contact-grid">
     <div class="reveal contact-text">
@@ -21,6 +20,8 @@
         <div class="form-field"><label>Business Type</label><select name="business_type"><option value="">What kind of business?</option><option>Beauty / Nail Salon</option><option>Barbershop</option><option>Yoga / Pilates / Fitness</option><option>Restaurant / Café</option><option>Med Spa / Wellness</option><option>Real Estate</option><option>Other</option></select></div>
         <div class="form-field"><label>Current Website</label><input type="url" name="current_website" placeholder="https://your-current-site.com (if any)" /></div>
         <div class="form-field"><label>What do you need?</label><textarea name="message" rows="3" placeholder="Tell me about your goals — more bookings? Better Google ranking? A complete redesign?"></textarea></div>
+        <!-- Honeypot: hidden from real users, filled only by bots -->
+        <div class="hp-field" aria-hidden="true"><label>Leave this empty</label><input type="text" name="_hp" tabindex="-1" autocomplete="off" /></div>
         <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
           <span class="btn-label">Send Message</span>
           <span class="btn-sending" style="display:none;">Sending…</span>
@@ -44,6 +45,8 @@
   .form-field input::placeholder,.form-field textarea::placeholder{color:var(--text-muted)}
   .form-success{margin-top:16px;font-size:14px;color:#22c55e;font-weight:500}
   .form-error{margin-top:16px;font-size:14px;color:#ef4444;font-weight:500}
+  /* Honeypot — visually hidden, not removed from DOM so bots can find it */
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
 </style>
 
 <script>
@@ -53,9 +56,18 @@
   const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
   const successMsg = form.querySelector('.form-success') as HTMLElement;
   const errorMsg = form.querySelector('.form-error') as HTMLElement;
+  const honeypot = form.querySelector('input[name="_hp"]') as HTMLInputElement;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Honeypot check — if filled, silently bail (it's a bot)
+    if (honeypot.value.trim() !== '') {
+      successMsg.style.display = 'block'; // fake success so bot doesn't retry
+      form.reset();
+      return;
+    }
+
     btnLabel.style.display = 'none';
     btnSending.style.display = 'inline';
     submitBtn.disabled = true;
@@ -63,15 +75,7 @@
     errorMsg.style.display = 'none';
 
     try {
-      // Get Botpoison challenge solution
-      let _botpoison = '';
-      if ((window as any).Botpoison) {
-        const bp = new (window as any).Botpoison({ publicKey: 'pk_573a4482-4918-41b4-adf4-e49eb881479d' });
-        const { solution } = await bp.challenge();
-        _botpoison = solution;
-      }
-
-      const data = { ...Object.fromEntries(new FormData(form)), _botpoison };
+      const data = Object.fromEntries(new FormData(form));
       const res = await fetch('https://submit-form.com/znDadsIij', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
