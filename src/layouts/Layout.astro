@@ -1,8 +1,14 @@
 ---
-interface Props { title?: string; description?: string; }
-const { title = "Karan Oberoi — Websites That Win Customers", description = "I build blazing-fast, premium websites for local businesses that actually drive bookings and revenue." } = Astro.props;
+interface Props { title?: string; description?: string; ogImage?: string; }
+const {
+  title = "Web Designer in Orange County, CA — Karan Oberoi",
+  description = "Affordable web design for local businesses in Orange County, CA. Fast, modern websites starting at $500 that drive real bookings and revenue. Serving Irvine, Anaheim, Santa Ana & beyond.",
+  ogImage = "/og_image.png"
+} = Astro.props;
 
 const siteUrl = "https://webdesign.karanobe.com";
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+const ogImageUrl = `${siteUrl}${ogImage}`;
 
 const schemaOrg = {
   "@context": "https://schema.org",
@@ -21,19 +27,21 @@ const schemaOrg = {
         "addressCountry": "US"
       },
       "jobTitle": "Web Designer",
-      "description": "Freelance web designer building blazing-fast, premium websites for local businesses that drive bookings and revenue.",
+      "description": "Freelance web designer in Orange County, CA building fast, affordable websites for local businesses that drive bookings and revenue.",
+      "knowsAbout": ["Web Design", "SEO", "Local SEO", "E-Commerce", "Shopify", "Website Development"],
       "sameAs": [
         "https://www.instagram.com/karanobewebdesign/"
       ]
     },
     {
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "ProfessionalService"],
       "@id": `${siteUrl}/#business`,
       "name": "Karan Oberoi Web Design",
       "url": siteUrl,
       "email": "contact@karanobe.com",
       "telephone": "+17144559007",
-      "description": "Premium web design for local businesses — fast sites that drive real bookings and revenue.",
+      "image": ogImageUrl,
+      "description": "Affordable web design for local businesses in Orange County, CA. Fast, modern websites that drive real bookings and revenue.",
       "founder": { "@id": `${siteUrl}/#person` },
       "address": {
         "@type": "PostalAddress",
@@ -41,11 +49,25 @@ const schemaOrg = {
         "addressRegion": "CA",
         "addressCountry": "US"
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "United States"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 33.7175,
+        "longitude": -117.8311
       },
+      "areaServed": [
+        { "@type": "City", "name": "Irvine", "addressRegion": "CA" },
+        { "@type": "City", "name": "Anaheim", "addressRegion": "CA" },
+        { "@type": "City", "name": "Santa Ana", "addressRegion": "CA" },
+        { "@type": "City", "name": "Huntington Beach", "addressRegion": "CA" },
+        { "@type": "City", "name": "Orange", "addressRegion": "CA" },
+        { "@type": "City", "name": "Fullerton", "addressRegion": "CA" },
+        { "@type": "City", "name": "Garden Grove", "addressRegion": "CA" },
+        { "@type": "City", "name": "Costa Mesa", "addressRegion": "CA" },
+        { "@type": "City", "name": "Newport Beach", "addressRegion": "CA" },
+        { "@type": "AdministrativeArea", "name": "Orange County", "addressRegion": "CA" }
+      ],
       "priceRange": "$$",
+      "openingHours": "Mo-Fr 09:00-18:00",
       "sameAs": [
         "https://www.instagram.com/karanobewebdesign/"
       ],
@@ -78,7 +100,7 @@ const schemaOrg = {
           {
             "@type": "Offer",
             "name": "E-Commerce Build",
-            "description": "Custom or Shopify e-commerce store.",
+            "description": "Custom or Shopify e-commerce store for Orange County businesses.",
             "priceSpecification": {
               "@type": "PriceSpecification",
               "minPrice": "1500",
@@ -105,8 +127,29 @@ const schemaOrg = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content="web designer Orange County, web design Orange County CA, website design Irvine, affordable web design, local business website, web designer near me" />
+    <meta name="author" content="Karan Oberoi" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Karan Oberoi Web Design" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={`${siteUrl}${Astro.url.pathname}`} />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   </head>
