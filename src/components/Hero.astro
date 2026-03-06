@@ -1,0 +1,35 @@
+---
+---
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="reveal hero-badge"><span class="badge-dot"></span>Now booking for Q2 2025</div>
+    <h1 class="reveal">I build websites that<br><span class="serif">actually</span> get you customers</h1>
+    <p class="reveal hero-sub">Most local businesses have websites that load in 4+ seconds, look like they're from 2015, and don't show up on Google. I fix that — with blazing-fast, premium sites built to book appointments and rank locally.</p>
+    <div class="reveal hero-ctas">
+      <a href="/contact" class="btn-primary">Start Your Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="/work" class="btn-outline">View My Work</a>
+    </div>
+    <div class="reveal hero-proof">
+      <div class="proof-stat"><strong>0.3s</strong><span>Avg load time</span></div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat"><strong>100</strong><span>Lighthouse score</span></div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat"><strong>3x</strong><span>More bookings</span></div>
+    </div>
+  </div>
+</section>
+<style>
+  .hero{position:relative;padding:160px 24px 100px;text-align:center;overflow:hidden}
+  .hero-glow{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:600px;border-radius:50%;background:var(--pop);opacity:0.04;filter:blur(120px);pointer-events:none}
+  .hero-content{position:relative;z-index:2;max-width:780px;margin:0 auto}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pop-glow);border:1px solid rgba(232,115,74,0.15);padding:6px 18px;border-radius:100px;font-size:13px;font-weight:500;color:var(--pop);margin-bottom:28px}
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--pop);animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  .hero h1{font-size:clamp(2.6rem,5.5vw,4.4rem);letter-spacing:-0.03em;margin-bottom:20px;line-height:1.08}
+  .hero-sub{font-size:17px;color:var(--text-dim);max-width:580px;margin:0 auto 36px;line-height:1.75}
+  .hero-ctas{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+  .hero-proof{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+  .proof-stat strong{display:block;font-size:28px;font-weight:700;letter-spacing:-0.02em;color:var(--text)}.proof-stat span{font-size:12px;color:var(--text-muted)}
+  .proof-divider{width:1px;height:40px;background:var(--border)}
+  @media(max-width:600px){.proof-divider{display:none}.hero-proof{gap:24px}}
+</style>

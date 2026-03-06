@@ -1,0 +1,16 @@
+---
+interface Props { label?: string; headline?: string; serif?: string; subtitle?: string; }
+const { label="", headline="", serif="", subtitle="" } = Astro.props;
+---
+<section class="page-hero"><div class="ph-glow"></div><div class="ph-content">
+  {label && <span class="reveal label">{label}</span>}
+  <h1 class="reveal">{headline} {serif && <span class="serif">{serif}</span>}</h1>
+  {subtitle && <p class="reveal ph-sub">{subtitle}</p>}
+</div></section>
+<style>
+  .page-hero{position:relative;padding:152px 24px 64px;text-align:center;overflow:hidden}
+  .ph-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:500px;height:400px;border-radius:50%;background:var(--pop);opacity:0.03;filter:blur(100px);pointer-events:none}
+  .ph-content{position:relative;z-index:2;max-width:700px;margin:0 auto}
+  .page-hero h1{font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-0.02em;margin-top:12px;margin-bottom:16px}
+  .ph-sub{font-size:17px;color:var(--text-dim);max-width:540px;margin:0 auto;line-height:1.7}
+</style>

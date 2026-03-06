@@ -1,0 +1,42 @@
+---
+interface CaseStudy { title: string; category: string; description: string; result: string; palette: string; }
+interface Props { cases?: CaseStudy[]; }
+const { cases = [
+  { title:"Luxe Nail Studio", category:"Beauty & Wellness", description:"Complete rebrand and website build for a premium nail studio. 5-page site with online booking integration.", result:"340% increase in online bookings", palette:"linear-gradient(135deg,#1A1612,#2A2420)" },
+  { title:"Iron & Blade Barbershop", category:"Barbershop", description:"Bold, high-energy single-page site with service menu, gallery, and booking system.", result:"First page Google ranking in 6 weeks", palette:"linear-gradient(135deg,#1A0A08,#2A1A18)" },
+  { title:"Balance Studio", category:"Yoga & Pilates", description:"Clean, calming multi-page site with class schedule, instructor bios, and student testimonials.", result:"200+ new student sign-ups in 3 months", palette:"linear-gradient(135deg,#0A1A0E,#1A2A1E)" },
+  { title:"GroundWork Coffee", category:"Café & Restaurant", description:"Fast, minimal site with menu, hours, location, and Instagram integration.", result:"2x foot traffic from Google Maps", palette:"linear-gradient(135deg,#1A1610,#2A2620)" },
+] } = Astro.props;
+---
+<section class="portfolio">
+  <div class="port-wrap">
+    <span class="reveal label">My Work</span>
+    <h2 class="reveal">Sites that <span class="serif">perform</span></h2>
+    <div class="port-grid stagger">
+      {cases.map(c=>(
+        <div class="reveal port-card">
+          <div class="port-preview" style={`background:${c.palette};`}><span>{c.title}</span></div>
+          <div class="port-info">
+            <div class="port-cat">{c.category}</div>
+            <h3>{c.title}</h3>
+            <p>{c.description}</p>
+            <div class="port-result"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;stroke:var(--pop);flex-shrink:0;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>{c.result}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .portfolio{padding:100px 24px}.port-wrap{max-width:1200px;margin:0 auto}
+  .portfolio h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin:12px 0 48px}
+  .port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}@media(max-width:768px){.port-grid{grid-template-columns:1fr}}
+  .port-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:border-color 0.3s,transform 0.3s}.port-card:hover{border-color:var(--border-lt);transform:translateY(-3px)}
+  .port-preview{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+  .port-preview span{font-family:var(--font-d);font-size:24px;font-style:italic;color:rgba(240,237,230,0.3)}
+  .port-info{padding:24px}
+  .port-cat{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--pop);margin-bottom:8px}
+  .port-card h3{font-size:20px;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em}
+  .port-card p{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:14px}
+  .port-result{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--pop)}
+</style>

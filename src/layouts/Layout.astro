@@ -1,0 +1,116 @@
+---
+interface Props { title?: string; description?: string; }
+const { title = "Karan Oberoi — Websites That Win Customers", description = "I build blazing-fast, premium websites for local businesses that actually drive bookings and revenue." } = Astro.props;
+
+const siteUrl = "https://webdesign.karanobe.com";
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Karan Oberoi",
+      "url": siteUrl,
+      "email": "contact@karanobe.com",
+      "telephone": "+17144559007",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Orange County",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "jobTitle": "Web Designer",
+      "description": "Freelance web designer building blazing-fast, premium websites for local businesses that drive bookings and revenue.",
+      "sameAs": [
+        "https://www.instagram.com/karanobewebdesign/"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#business`,
+      "name": "Karan Oberoi Web Design",
+      "url": siteUrl,
+      "email": "contact@karanobe.com",
+      "telephone": "+17144559007",
+      "description": "Premium web design for local businesses — fast sites that drive real bookings and revenue.",
+      "founder": { "@id": `${siteUrl}/#person` },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Orange County",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.instagram.com/karanobewebdesign/"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Web Design Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Website Build",
+            "description": "Single-page site starting at $500. Multi-page site starting at $800.",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "500",
+              "maxPrice": "800",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Hosting & Care",
+            "description": "Monthly hosting, maintenance, and care plan.",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "50",
+              "priceCurrency": "USD",
+              "billingIncrement": "Month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "E-Commerce Build",
+            "description": "Custom or Shopify e-commerce store.",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "1500",
+              "maxPrice": "3000",
+              "priceCurrency": "USD"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Karan Oberoi Web Design",
+      "publisher": { "@id": `${siteUrl}/#person` }
+    }
+  ]
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={`${siteUrl}${Astro.url.pathname}`} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body><slot />
+    <script>const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")})},{threshold:0.08,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".reveal").forEach(e=>o.observe(e));</script>
+  </body>
+</html>
