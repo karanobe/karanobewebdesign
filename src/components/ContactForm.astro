@@ -76,7 +76,7 @@
 
     try {
       const data = Object.fromEntries(new FormData(form));
-      const res = await fetch('https://submit-form.com/znDadsIij', {
+      const res = await fetch('https://submit-form.com/jBP7k8OCH', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(data),
@@ -85,9 +85,12 @@
         successMsg.style.display = 'block';
         form.reset();
       } else {
+        const body = await res.text().catch(() => '');
+        console.error('Formspark error:', res.status, body);
         errorMsg.style.display = 'block';
       }
-    } catch {
+    } catch (err) {
+      console.error('Form fetch error:', err);
       errorMsg.style.display = 'block';
     } finally {
       btnLabel.style.display = 'inline';
