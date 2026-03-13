@@ -18,7 +18,7 @@ const links = [{ label:"Work", href:"/work" },{ label:"Services", href:"/service
   </div>
 </nav>
 
-<div class="mobile-menu" aria-hidden="true">
+<div class="mobile-menu" aria-hidden="true" inert>
   <div class="mobile-menu-header">
     <a href="/" class="mobile-menu-logo">
       <span class="logo-name">Karan Oberoi<span class="logo-dot">.</span></span>
@@ -32,7 +32,7 @@ const links = [{ label:"Work", href:"/work" },{ label:"Services", href:"/service
     <ul>
       {links.map(l=><li><a href={l.href} class:list={[{active:cur===l.href}]}>{l.label}</a></li>)}
     </ul>
-    <a href="/contact" class="btn-primary mobile-menu-cta">Start a Project</a>
+    <a href="/contact" class="btn-primary mobile-menu-cta" aria-label="Start a Project (mobile menu)">Start a Project</a>
   </div>
 </div>
 <div class="mobile-overlay"></div>
@@ -155,6 +155,7 @@ const links = [{ label:"Work", href:"/work" },{ label:"Services", href:"/service
     overlay.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     menu.setAttribute('aria-hidden', 'false');
+    menu.removeAttribute('inert');
     document.body.style.overflow = 'hidden';
   }
 
@@ -164,6 +165,7 @@ const links = [{ label:"Work", href:"/work" },{ label:"Services", href:"/service
     overlay.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     menu.setAttribute('aria-hidden', 'true');
+    menu.setAttribute('inert', '');
     document.body.style.overflow = '';
   }
 
