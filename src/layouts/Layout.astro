@@ -1,124 +1,203 @@
 ---
-interface Props { title?: string; description?: string; ogImage?: string; }
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  keywords?: string;
+  pageType?: "website" | "article";
+  breadcrumbs?: { name: string; url: string }[];
+  faqItems?: { question: string; answer: string }[];
+}
 const {
   title = "Web Designer in Orange County, CA — Karan Oberoi",
   description = "Affordable web design for local businesses in Orange County, CA. Fast, modern websites starting at $500 that drive real bookings and revenue. Serving Irvine, Anaheim, Santa Ana & beyond.",
-  ogImage = "/og_image.png"
+  ogImage = "/og_image.png",
+  keywords = "web designer Orange County, web design Orange County CA, website design Irvine, affordable web design, local business website, web designer near me",
+  pageType = "website",
+  breadcrumbs = [],
+  faqItems = [],
 } = Astro.props;
 
 const siteUrl = "https://webdesign.karanobe.com";
-const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+const canonicalUrl = `${siteUrl}${Astro.url.pathname === "/" ? "" : Astro.url.pathname}`;
 const ogImageUrl = `${siteUrl}${ogImage}`;
+
+const schemaGraph: Record<string, any>[] = [
+  {
+    "@type": "Person",
+    "@id": `${siteUrl}/#person`,
+    "name": "Karan Oberoi",
+    "url": siteUrl,
+    "email": "contact@karanobe.com",
+    "telephone": "+17144559007",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Orange County",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "jobTitle": "Web Designer",
+    "description": "Freelance web designer in Orange County, CA building fast, affordable websites for local businesses that drive bookings and revenue.",
+    "knowsAbout": ["Web Design", "SEO", "Local SEO", "E-Commerce", "Shopify", "Website Development", "Responsive Design", "UI/UX Design"],
+    "sameAs": [
+      "https://www.instagram.com/karanobewebdesign/"
+    ]
+  },
+  {
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": `${siteUrl}/#business`,
+    "name": "Karan Oberoi Web Design",
+    "url": siteUrl,
+    "email": "contact@karanobe.com",
+    "telephone": "+17144559007",
+    "image": ogImageUrl,
+    "logo": `${siteUrl}/favicon.svg`,
+    "description": "Affordable web design for local businesses in Orange County, CA. Fast, modern websites that drive real bookings and revenue.",
+    "founder": { "@id": `${siteUrl}/#person` },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Orange County",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 33.7175,
+      "longitude": -117.8311
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Irvine", "addressRegion": "CA" },
+      { "@type": "City", "name": "Anaheim", "addressRegion": "CA" },
+      { "@type": "City", "name": "Santa Ana", "addressRegion": "CA" },
+      { "@type": "City", "name": "Huntington Beach", "addressRegion": "CA" },
+      { "@type": "City", "name": "Orange", "addressRegion": "CA" },
+      { "@type": "City", "name": "Fullerton", "addressRegion": "CA" },
+      { "@type": "City", "name": "Garden Grove", "addressRegion": "CA" },
+      { "@type": "City", "name": "Costa Mesa", "addressRegion": "CA" },
+      { "@type": "City", "name": "Newport Beach", "addressRegion": "CA" },
+      { "@type": "City", "name": "Tustin", "addressRegion": "CA" },
+      { "@type": "City", "name": "Lake Forest", "addressRegion": "CA" },
+      { "@type": "City", "name": "Mission Viejo", "addressRegion": "CA" },
+      { "@type": "AdministrativeArea", "name": "Orange County", "addressRegion": "CA" }
+    ],
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "paymentAccepted": "Cash, Credit Card, Venmo, Zelle",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "3",
+      "bestRating": "5"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Maria Rosales" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Online bookings tripled in the first month."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Marcus Cole" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Now I pay less for a site that loads in 0.3 seconds and I'm on page 1 of Google."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Lila Chen" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "He finished the whole site in 10 days. The quality is insane."
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/karanobewebdesign/"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Design Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Website Build",
+          "description": "Custom website design for local businesses. Single-page site starting at $500. Multi-page site starting at $800.",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "500",
+            "maxPrice": "800",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Hosting & Care",
+          "description": "Monthly hosting, maintenance, analytics, and ongoing support.",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "50",
+            "priceCurrency": "USD",
+            "billingIncrement": "Month"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "E-Commerce Build",
+          "description": "Custom or Shopify e-commerce store for Orange County businesses.",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "1500",
+            "maxPrice": "3000",
+            "priceCurrency": "USD"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    "url": siteUrl,
+    "name": "Karan Oberoi Web Design",
+    "description": "Affordable web design for local businesses in Orange County, CA.",
+    "publisher": { "@id": `${siteUrl}/#person` },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${siteUrl}/?s={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  }
+];
+
+// Add BreadcrumbList schema if breadcrumbs are provided
+if (breadcrumbs.length > 0) {
+  schemaGraph.push({
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": crumb.name,
+      "item": crumb.url.startsWith("http") ? crumb.url : `${siteUrl}${crumb.url}`
+    }))
+  });
+}
+
+// Add FAQPage schema if FAQ items are provided
+if (faqItems.length > 0) {
+  schemaGraph.push({
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  });
+}
 
 const schemaOrg = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": `${siteUrl}/#person`,
-      "name": "Karan Oberoi",
-      "url": siteUrl,
-      "email": "contact@karanobe.com",
-      "telephone": "+17144559007",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Orange County",
-        "addressRegion": "CA",
-        "addressCountry": "US"
-      },
-      "jobTitle": "Web Designer",
-      "description": "Freelance web designer in Orange County, CA building fast, affordable websites for local businesses that drive bookings and revenue.",
-      "knowsAbout": ["Web Design", "SEO", "Local SEO", "E-Commerce", "Shopify", "Website Development"],
-      "sameAs": [
-        "https://www.instagram.com/karanobewebdesign/"
-      ]
-    },
-    {
-      "@type": ["LocalBusiness", "ProfessionalService"],
-      "@id": `${siteUrl}/#business`,
-      "name": "Karan Oberoi Web Design",
-      "url": siteUrl,
-      "email": "contact@karanobe.com",
-      "telephone": "+17144559007",
-      "image": ogImageUrl,
-      "description": "Affordable web design for local businesses in Orange County, CA. Fast, modern websites that drive real bookings and revenue.",
-      "founder": { "@id": `${siteUrl}/#person` },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Orange County",
-        "addressRegion": "CA",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 33.7175,
-        "longitude": -117.8311
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Irvine", "addressRegion": "CA" },
-        { "@type": "City", "name": "Anaheim", "addressRegion": "CA" },
-        { "@type": "City", "name": "Santa Ana", "addressRegion": "CA" },
-        { "@type": "City", "name": "Huntington Beach", "addressRegion": "CA" },
-        { "@type": "City", "name": "Orange", "addressRegion": "CA" },
-        { "@type": "City", "name": "Fullerton", "addressRegion": "CA" },
-        { "@type": "City", "name": "Garden Grove", "addressRegion": "CA" },
-        { "@type": "City", "name": "Costa Mesa", "addressRegion": "CA" },
-        { "@type": "City", "name": "Newport Beach", "addressRegion": "CA" },
-        { "@type": "AdministrativeArea", "name": "Orange County", "addressRegion": "CA" }
-      ],
-      "priceRange": "$$",
-      "openingHours": "Mo-Fr 09:00-18:00",
-      "sameAs": [
-        "https://www.instagram.com/karanobewebdesign/"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Web Design Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "name": "Website Build",
-            "description": "Single-page site starting at $500. Multi-page site starting at $800.",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "500",
-              "maxPrice": "800",
-              "priceCurrency": "USD"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Hosting & Care",
-            "description": "Monthly hosting, maintenance, and care plan.",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "price": "50",
-              "priceCurrency": "USD",
-              "billingIncrement": "Month"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "E-Commerce Build",
-            "description": "Custom or Shopify e-commerce store for Orange County businesses.",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "1500",
-              "maxPrice": "3000",
-              "priceCurrency": "USD"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}/#website`,
-      "url": siteUrl,
-      "name": "Karan Oberoi Web Design",
-      "publisher": { "@id": `${siteUrl}/#person` }
-    }
-  ]
+  "@graph": schemaGraph
 };
 ---
 <!doctype html>
@@ -126,19 +205,30 @@ const schemaOrg = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="web designer Orange County, web design Orange County CA, website design Irvine, affordable web design, local business website, web designer near me" />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="Karan Oberoi" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Geo Tags for Local SEO -->
+    <meta name="geo.region" content="US-CA" />
+    <meta name="geo.placename" content="Orange County" />
+    <meta name="geo.position" content="33.7175;-117.8311" />
+    <meta name="ICBM" content="33.7175, -117.8311" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={pageType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Karan Oberoi Web Design — Orange County, CA" />
     <meta property="og:site_name" content="Karan Oberoi Web Design" />
     <meta property="og:locale" content="en_US" />
 
@@ -147,15 +237,25 @@ const schemaOrg = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Karan Oberoi Web Design — Orange County, CA" />
 
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#0B0B0D" />
+    <meta name="msapplication-TileColor" content="#0B0B0D" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/og_image.png" />
-    <link rel="apple-touch-icon-precomposed" href="/og_image.png" />
-    <link rel="canonical" href={canonicalUrl} />
-    <title>{title}</title>
+
+    <!-- Font Preloading for LCP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   </head>
-  <body><slot />
+  <body>
+    <slot />
     <script>const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")})},{threshold:0.08,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".reveal").forEach(e=>o.observe(e));</script>
   </body>
 </html>

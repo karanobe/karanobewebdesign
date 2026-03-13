@@ -2,7 +2,7 @@
 const cur = Astro.url.pathname;
 const links = [{ label:"Work", href:"/work" },{ label:"Services", href:"/services" },{ label:"About", href:"/about" },{ label:"Contact", href:"/contact" }];
 ---
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-in">
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>

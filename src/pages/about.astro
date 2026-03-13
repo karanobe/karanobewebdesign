@@ -1,4 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";import Nav from "../components/Nav.astro";import PageHero from "../components/PageHero.astro";import AboutContent from "../components/AboutContent.astro";import CTA from "../components/CTA.astro";import Footer from "../components/Footer.astro";import "../styles/global.css";
 ---
-<Layout title="About Karan Oberoi — Web Designer Based in Orange County, CA" description="I'm Karan Oberoi, a web designer based in Orange County, CA. I build fast, affordable websites for local businesses that actually drive bookings and revenue."><Nav /><PageHero label="About Me" headline="Why" serif="Karan" subtitle="I'm on a mission to give every local business a website that's as good as they are." /><AboutContent /><CTA /><Footer /></Layout>
+<Layout
+  title="About Karan Oberoi — Web Designer in Orange County, CA"
+  description="Meet Karan Oberoi, a freelance web designer in Orange County, CA. I build fast, affordable websites for local businesses — from nail salons to law firms — that rank on Google and drive bookings."
+  keywords="Karan Oberoi web designer, freelance web designer Orange County, about Karan Oberoi, Orange County CA web developer, affordable web designer Irvine CA"
+  breadcrumbs={[{ name: "Home", url: "/" }, { name: "About", url: "/about" }]}
+><Nav /><main><PageHero label="About Me" headline="Why" serif="Karan" subtitle="I'm on a mission to give every local business a website that's as good as they are." /><AboutContent /><CTA /></main><Footer /></Layout>

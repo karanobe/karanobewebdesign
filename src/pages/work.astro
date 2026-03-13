@@ -1,4 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";import Nav from "../components/Nav.astro";import PageHero from "../components/PageHero.astro";import Portfolio from "../components/Portfolio.astro";import Testimonials from "../components/Testimonials.astro";import CTA from "../components/CTA.astro";import Footer from "../components/Footer.astro";import "../styles/global.css";
 ---
-<Layout title="Web Design Portfolio — Orange County, CA | Karan Oberoi" description="See real websites built for local businesses in Orange County and beyond. Fast, conversion-focused web design that drives bookings and revenue."><Nav /><PageHero label="Portfolio" headline="Work that" serif="speaks" subtitle="Every project is built for speed, SEO, and conversions. Here's a look at what I've done for businesses like yours." /><Portfolio /><Testimonials /><CTA /><Footer /></Layout>
+<Layout
+  title="Web Design Portfolio — Orange County Websites | Karan Oberoi"
+  description="See real websites built for local businesses in Orange County and beyond — from law firms to wedding planners. Fast, conversion-focused web design that drives bookings and revenue."
+  keywords="web design portfolio Orange County, website examples, local business websites, Irvine web design examples, Orange County website portfolio, small business website design"
+  breadcrumbs={[{ name: "Home", url: "/" }, { name: "Portfolio", url: "/work" }]}
+><Nav /><main><PageHero label="Portfolio" headline="Work that" serif="speaks" subtitle="Every project is built for speed, SEO, and conversions. Here's a look at what I've done for businesses like yours." /><Portfolio /><Testimonials /><CTA /></main><Footer /></Layout>

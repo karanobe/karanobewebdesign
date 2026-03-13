@@ -1,0 +1,34 @@
+---
+interface Props { items: { question: string; answer: string }[]; }
+const { items } = Astro.props;
+---
+<section class="faq">
+  <div class="faq-wrap">
+    <span class="reveal label">FAQ</span>
+    <h2 class="reveal">Common <span class="serif">questions</span></h2>
+    <div class="faq-list stagger">
+      {items.map(item => (
+        <details class="reveal faq-item">
+          <summary>
+            <span>{item.question}</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .faq{padding:100px 24px}.faq-wrap{max-width:760px;margin:0 auto}
+  .faq h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;margin:12px 0 48px}
+  .faq-list{display:flex;flex-direction:column;gap:8px}
+  .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.3s}
+  .faq-item:hover{border-color:var(--border-lt)}
+  .faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;font-size:16px;font-weight:600;cursor:pointer;list-style:none;color:var(--text)}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::marker{display:none}
+  .faq-chevron{flex-shrink:0;color:var(--text-muted);transition:transform 0.3s}
+  .faq-item[open] .faq-chevron{transform:rotate(180deg)}
+  .faq-item p{padding:0 24px 20px;font-size:15px;color:var(--text-dim);line-height:1.7}
+</style>

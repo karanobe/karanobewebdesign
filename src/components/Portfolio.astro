@@ -16,7 +16,7 @@ const { cases = [
       {cases.map(c=>(
         <div class="reveal port-card">
           <div class="port-preview" style={`background:${c.palette};`}>
-            {c.image ? <img src={c.image} alt={`${c.title} website screenshot`} loading="lazy" /> : <span>{c.title}</span>}
+            {c.image ? <img src={c.image} alt={`${c.title} website design by Karan Oberoi — ${c.category} in Orange County`} width="1600" height="900" loading="lazy" decoding="async" /> : <span>{c.title}</span>}
           </div>
           <div class="port-info">
             <div class="port-cat">{c.category}</div>

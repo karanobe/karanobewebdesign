@@ -1,4 +1,19 @@
 ---
-import Layout from "../layouts/Layout.astro";import Nav from "../components/Nav.astro";import PageHero from "../components/PageHero.astro";import Services from "../components/Services.astro";import Process from "../components/Process.astro";import CTA from "../components/CTA.astro";import Footer from "../components/Footer.astro";import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";import Nav from "../components/Nav.astro";import PageHero from "../components/PageHero.astro";import Services from "../components/Services.astro";import Process from "../components/Process.astro";import FAQ from "../components/FAQ.astro";import CTA from "../components/CTA.astro";import Footer from "../components/Footer.astro";import "../styles/global.css";
+
+const faqItems = [
+  { question: "How much does a website cost in Orange County?", answer: "Website builds start at $500 for a single-page site and $800 for a multi-page site. E-commerce stores range from $1,500 to $3,000 depending on scope. Monthly hosting and care plans are $50/month." },
+  { question: "How long does it take to build a website?", answer: "Most websites are designed, built, and launched within 2 weeks. E-commerce sites may take 3-4 weeks depending on the number of products and complexity." },
+  { question: "Do you offer monthly payment plans?", answer: "Yes! Website builds can be split into two payments — 50% upfront and 50% on launch. The $50/month hosting and care plan is billed monthly with no long-term contracts." },
+  { question: "Will my website show up on Google?", answer: "Every site is built with SEO best practices — semantic HTML, structured data, fast load times, and local SEO optimization. I also set up your Google Business Profile to help you rank in local searches." },
+  { question: "What if I already have a website?", answer: "I can redesign and rebuild your existing site on a faster, modern platform. I'll migrate your content, improve your SEO, and give you a site that actually converts visitors into customers." },
+  { question: "Do I need to provide my own content?", answer: "I'll work with what you have. If you need help with copywriting, photos, or branding, I can guide you or connect you with trusted partners. Most clients send me their logo, photos, and key info and I handle the rest." },
+];
 ---
-<Layout title="Web Design Services & Pricing — Orange County, CA | Karan Oberoi" description="Web design services for Orange County businesses starting at $500. Website builds, monthly hosting & care, and e-commerce stores. Serving Irvine, Anaheim, Santa Ana & all of OC."><Nav /><PageHero label="Services" headline="What I" serif="offer" subtitle="Simple pricing, premium quality. Everything you need to win online — from build to growth." /><Services /><Process /><CTA /><Footer /></Layout>
+<Layout
+  title="Web Design Pricing & Services — Orange County, CA | Karan Oberoi"
+  description="Transparent web design pricing for Orange County businesses. Website builds from $500, e-commerce from $1,500, and monthly hosting for $50/mo. No contracts, no hidden fees."
+  keywords="web design pricing Orange County, website cost Orange County CA, affordable website design, small business web design cost, e-commerce website cost, Shopify web design Orange County, web design packages"
+  breadcrumbs={[{ name: "Home", url: "/" }, { name: "Services & Pricing", url: "/services" }]}
+  faqItems={faqItems}
+><Nav /><main><PageHero label="Services" headline="What I" serif="offer" subtitle="Simple pricing, premium quality. Everything you need to win online — from build to growth." /><Services /><Process /><FAQ items={faqItems} /></main><CTA /><Footer /></Layout>
