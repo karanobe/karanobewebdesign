@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+
 /* ── SAGE & IVORY THEME ─────────────────────────────── */
 :root {
   --bg: #FAF8F3;
@@ -15,8 +17,8 @@
   --text: #2C2C2C;
   --text-dim: #6B6560;
   --text-muted: #8A847C;
-  --font-d: 'Cormorant Garamond', Georgia, serif;
-  --font-b: 'Libre Franklin', system-ui, sans-serif;
+  --font-d: 'Instrument Serif', Georgia, serif;
+  --font-b: 'Inter', system-ui, sans-serif;
 }
 
 *,
