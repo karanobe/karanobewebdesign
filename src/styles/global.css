@@ -1,34 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap');
 
-/* ── LIGHT THEME (active) ─────────────────────────────── */
-/* :root {
-  --bg:#F8F7F4; --bg-el:#F0EEE9; --bg-card:#FFFFFF; --bg-warm:#EDE9E2;
-  --border:#E2DDD6; --border-lt:#D0C9BF;
-  --accent:#1A1A2E; --accent-dim:#2D2D45; --accent-muted:#64748B;
-  --pop:#E85D26; --pop-dim:#CC4F1E; --pop-glow:rgba(232,93,38,0.12);
-  --text:#1A1A2E; --text-dim:#3D3D56; --text-muted:#64748B;
-  --font-d:'Instrument Serif',Georgia,serif; --font-b:'Inter',system-ui,sans-serif;
-} */
-
-/* ── DARK THEME (to revert: comment out Light above, uncomment Dark below) ── */
+/* ── SAGE & IVORY THEME ─────────────────────────────── */
 :root {
-  --bg: #0B0B0D;
-  --bg-el: #101014;
-  --bg-card: #151518;
-  --bg-warm: #1A1A1E;
-  --border: #1E1E24;
-  --border-lt: #2A2A32;
-  --accent: #F5F0E8;
-  --accent-dim: #C8C2B8;
-  --accent-muted: #8A857C;
-  --pop: #E8734A;
-  --pop-dim: #D05E38;
-  --pop-glow: rgba(232, 115, 74, 0.1);
-  --text: #F0EDE6;
-  --text-dim: #A5A09A;
-  --text-muted: #8A847D;
-  --font-d: 'Instrument Serif', Georgia, serif;
-  --font-b: 'Inter', system-ui, sans-serif;
+  --bg: #FAF8F3;
+  --bg-el: #F5F0E8;
+  --bg-card: #FFFFFF;
+  --bg-warm: #F0EBDF;
+  --border: #E4EBE0;
+  --border-lt: #C8D4BF;
+  --accent: #5C6B55;
+  --accent-dim: #4A5A43;
+  --accent-muted: #7A8B72;
+  --pop: #5C6B55;
+  --pop-dim: #4A5A43;
+  --pop-glow: rgba(92, 107, 85, 0.1);
+  --text: #2C2C2C;
+  --text-dim: #6B6560;
+  --text-muted: #8A847C;
+  --font-d: 'Cormorant Garamond', Georgia, serif;
+  --font-b: 'Libre Franklin', system-ui, sans-serif;
 }
 
 *,
@@ -52,15 +42,6 @@ body {
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 99
 }
 
 h1,
