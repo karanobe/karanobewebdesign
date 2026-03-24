@@ -1,8 +1,4 @@
 ---
-import '@fontsource-variable/inter/wght.css';
-import '@fontsource/instrument-serif/latin.css';
-import '@fontsource/instrument-serif/latin-italic.css';
-
 interface Props {
   title?: string;
   description?: string;
@@ -244,18 +240,16 @@ const schemaOrg = {
     <meta name="twitter:image:alt" content="Karan Oberoi Web Design — Orange County, CA" />
 
     <!-- Theme & Icons -->
-    <meta name="theme-color" content="#FAF8F3" />
-    <meta name="msapplication-TileColor" content="#FAF8F3" />
+    <meta name="theme-color" content="#0B0B0D" />
+    <meta name="msapplication-TileColor" content="#0B0B0D" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/og_image.png" />
 
-    <!-- Fonts (self-hosted) -->
-
-    <!-- Prefetch main pages for instant navigation -->
-    <link rel="prefetch" href="/work/" />
-    <link rel="prefetch" href="/services/" />
-    <link rel="prefetch" href="/about/" />
-    <link rel="prefetch" href="/contact/" />
+    <!-- Font Preloading for LCP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
