@@ -16,7 +16,7 @@
   --text-dim: #6B6560;
   --text-muted: #8A847C;
   --font-d: 'Instrument Serif', Georgia, serif;
-  --font-b: 'Inter', system-ui, sans-serif;
+  --font-b: 'Inter Variable', 'Inter', system-ui, sans-serif;
 }
 
 *,
