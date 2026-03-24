@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/inter/opsz.css';
+import '@fontsource-variable/inter/wght.css';
 import '@fontsource/instrument-serif/latin.css';
 import '@fontsource/instrument-serif/latin-italic.css';
 
@@ -250,6 +250,12 @@ const schemaOrg = {
     <link rel="apple-touch-icon" href="/og_image.png" />
 
     <!-- Fonts (self-hosted) -->
+
+    <!-- Prefetch main pages for instant navigation -->
+    <link rel="prefetch" href="/work/" />
+    <link rel="prefetch" href="/services/" />
+    <link rel="prefetch" href="/about/" />
+    <link rel="prefetch" href="/contact/" />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
