@@ -1,4 +1,8 @@
 ---
+import '@fontsource-variable/inter/opsz.css';
+import '@fontsource/instrument-serif/latin.css';
+import '@fontsource/instrument-serif/latin-italic.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -245,11 +249,7 @@ const schemaOrg = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/og_image.png" />
 
-    <!-- Font Preloading for LCP -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <!-- Fonts (self-hosted) -->
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
