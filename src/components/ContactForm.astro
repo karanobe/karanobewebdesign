@@ -10,67 +10,344 @@
       <div class="c-detail"><strong>Based in</strong><span>Orange County, CA — serving businesses nationwide</span></div>
     </div>
     <div class="reveal contact-form-card">
-      <form id="contact-form">
-        <div class="form-field"><label>Business Name</label><input type="text" name="business_name" placeholder="Your business name" /></div>
-        <div class="form-row">
-          <div class="form-field"><label>Your Name</label><input type="text" name="name" placeholder="First and last name" required /></div>
-          <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required /></div>
+      <!-- Progress bar -->
+      <div class="funnel-progress">
+        <div class="progress-steps">
+          <button type="button" class="progress-step active" data-step="1"><span class="step-num">1</span><span class="step-label">Business</span></button>
+          <div class="progress-line"><div class="progress-line-fill"></div></div>
+          <button type="button" class="progress-step" data-step="2"><span class="step-num">2</span><span class="step-label">Contact</span></button>
+          <div class="progress-line"><div class="progress-line-fill"></div></div>
+          <button type="button" class="progress-step" data-step="3"><span class="step-num">3</span><span class="step-label">Project</span></button>
         </div>
-        <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="(000) 000-0000" /></div>
-        <div class="form-field"><label>Business Type</label><select name="business_type"><option value="">What kind of business?</option><option>Beauty / Nail Salon</option><option>Barbershop</option><option>Yoga / Pilates / Fitness</option><option>Restaurant / Café</option><option>Med Spa / Wellness</option><option>Real Estate</option><option>Other</option></select></div>
-        <div class="form-field"><label>Current Website</label><input type="url" name="current_website" placeholder="https://your-current-site.com (if any)" /></div>
-        <div class="form-field"><label>What do you need?</label><textarea name="message" rows="3" placeholder="Tell me about your goals — more bookings? Better Google ranking? A complete redesign?"></textarea></div>
+      </div>
+
+      <form id="contact-form">
+        <!-- Step 1: Business Info -->
+        <div class="funnel-step active" data-step="1">
+          <h3 class="step-title">About your business</h3>
+          <p class="step-desc">Let's start with the basics — what kind of business do you run?</p>
+          <div class="form-field">
+            <label>Business Name</label>
+            <input type="text" name="business_name" placeholder="Your business name" />
+          </div>
+          <div class="form-field">
+            <label>Business Type</label>
+            <select name="business_type">
+              <option value="">What kind of business?</option>
+              <option>Beauty / Nail Salon</option>
+              <option>Barbershop</option>
+              <option>Yoga / Pilates / Fitness</option>
+              <option>Restaurant / Café</option>
+              <option>Med Spa / Wellness</option>
+              <option>Real Estate</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 2: Contact Info -->
+        <div class="funnel-step" data-step="2">
+          <h3 class="step-title">How to reach you</h3>
+          <p class="step-desc">I'll use this to send you a personalized plan within 24 hours.</p>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Your Name <span class="req">*</span></label>
+              <input type="text" name="name" placeholder="First and last name" required />
+            </div>
+            <div class="form-field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" name="email" placeholder="you@email.com" required />
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(000) 000-0000" />
+          </div>
+        </div>
+
+        <!-- Step 3: Project Details -->
+        <div class="funnel-step" data-step="3">
+          <h3 class="step-title">Tell me about your project</h3>
+          <p class="step-desc">The more detail, the better — but even a few words helps.</p>
+          <div class="form-field">
+            <label>Current Website</label>
+            <input type="url" name="current_website" placeholder="https://your-current-site.com (if any)" />
+          </div>
+          <div class="form-field">
+            <label>What do you need?</label>
+            <textarea name="message" rows="4" placeholder="Tell me about your goals — more bookings? Better Google ranking? A complete redesign?"></textarea>
+          </div>
+        </div>
+
         <!-- Honeypot: hidden from real users, filled only by bots -->
-        <div class="hp-field" aria-hidden="true" inert><label>Leave this empty</label><input type="text" name="_hp" tabindex="-1" autocomplete="off" /></div>
-        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
-          <span class="btn-label">Send Message</span>
-          <span class="btn-sending" style="display:none;">Sending…</span>
-        </button>
+        <div class="hp-field" aria-hidden="true" inert>
+          <label>Leave this empty</label>
+          <input type="text" name="_hp" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="funnel-nav">
+          <button type="button" class="btn-back" style="visibility:hidden;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+          </button>
+          <button type="button" class="btn-primary btn-next">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button type="submit" class="btn-primary btn-submit" style="display:none;">
+            <span class="btn-label">Send Message</span>
+            <span class="btn-sending" style="display:none;">Sending…</span>
+          </button>
+        </div>
+
         <p class="form-success" style="display:none;">Message sent! I'll be in touch within 24 hours.</p>
         <p class="form-error" style="display:none;">Something went wrong. Please try again or email me directly.</p>
       </form>
     </div>
   </div>
 </section>
+
 <style>
-  .contact-section{padding:60px 24px 120px}.contact-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-  @media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
-  .contact-text h2{font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.02em;margin-bottom:16px}.contact-text p{font-size:15px;color:var(--text-dim);line-height:1.7;margin-bottom:32px}
-  .c-detail{margin-bottom:16px}.c-detail strong{display:block;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px}.c-detail span,.c-detail a{font-size:14px;color:var(--text-muted)}.c-detail a:hover{color:var(--pop)}
-  .contact-form-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:36px 28px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.form-row{grid-template-columns:1fr}}
-  .form-field{margin-bottom:16px}.form-field label{display:block;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
-  .form-field input,.form-field select,.form-field textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-family:var(--font-b);font-size:14px;color:var(--text);transition:border-color 0.3s;outline:none}
-  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--pop)}.form-field select{appearance:none;cursor:pointer}.form-field textarea{resize:vertical;min-height:80px}
-  .form-field input::placeholder,.form-field textarea::placeholder{color:var(--text-muted)}
-  .form-success{margin-top:16px;font-size:14px;color:#22c55e;font-weight:500}
-  .form-error{margin-top:16px;font-size:14px;color:#ef4444;font-weight:500}
-  /* Honeypot — visually hidden, not removed from DOM so bots can find it */
-  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+  .contact-section { padding: 60px 24px 120px; }
+  .contact-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+  }
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-text h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .contact-text p {
+    font-size: 15px; color: var(--text-dim); line-height: 1.7; margin-bottom: 32px;
+  }
+  .c-detail { margin-bottom: 16px; }
+  .c-detail strong {
+    display: block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 2px;
+  }
+  .c-detail span, .c-detail a { font-size: 14px; color: var(--text-muted); }
+  .c-detail a:hover { color: var(--pop); }
+
+  .contact-form-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px 28px;
+  }
+
+  /* ── Progress indicator ── */
+  .funnel-progress { margin-bottom: 32px; }
+  .progress-steps {
+    display: flex; align-items: center; justify-content: center; gap: 0;
+  }
+  .progress-step {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer; padding: 0 4px;
+  }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; font-family: var(--font-b);
+    border: 2px solid var(--border); color: var(--text-muted);
+    background: var(--bg); transition: all 0.3s;
+  }
+  .progress-step.active .step-num,
+  .progress-step.completed .step-num {
+    border-color: var(--accent); background: var(--accent); color: #fff;
+  }
+  .step-label {
+    font-size: 11px; font-weight: 500; color: var(--text-muted);
+    font-family: var(--font-b); transition: color 0.3s;
+  }
+  .progress-step.active .step-label { color: var(--text); font-weight: 600; }
+  .progress-step.completed .step-label { color: var(--accent); }
+
+  .progress-line {
+    flex: 1; height: 2px; background: var(--border);
+    margin: 0 8px; margin-bottom: 20px; max-width: 60px;
+    position: relative; overflow: hidden;
+  }
+  .progress-line-fill {
+    position: absolute; top: 0; left: 0; height: 100%; width: 0%;
+    background: var(--accent); transition: width 0.4s;
+  }
+
+  /* ── Steps ── */
+  .funnel-step {
+    display: none; opacity: 0;
+    animation: stepIn 0.35s ease forwards;
+  }
+  .funnel-step.active { display: block; }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-title {
+    font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
+    margin-bottom: 6px; color: var(--text);
+  }
+  .step-desc {
+    font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6;
+  }
+  .req { color: var(--accent); }
+
+  /* ── Form fields ── */
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  .form-field { margin-bottom: 16px; }
+  .form-field label {
+    display: block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 6px;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px;
+    font-family: var(--font-b); font-size: 14px; color: var(--text);
+    transition: border-color 0.3s; outline: none;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    border-color: var(--pop);
+  }
+  .form-field select { appearance: none; cursor: pointer; }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-field input::placeholder, .form-field textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* ── Navigation buttons ── */
+  .funnel-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 8px; gap: 12px;
+  }
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 500; font-family: var(--font-b);
+    color: var(--text-muted); background: none; border: none;
+    cursor: pointer; padding: 10px 0; transition: color 0.2s;
+  }
+  .btn-back:hover { color: var(--text); }
+  .btn-next, .btn-submit { margin-left: auto; }
+  .btn-submit { width: auto; justify-content: center; }
+
+  /* ── Messages ── */
+  .form-success { margin-top: 16px; font-size: 14px; color: #22c55e; font-weight: 500; }
+  .form-error { margin-top: 16px; font-size: 14px; color: #ef4444; font-weight: 500; }
+
+  /* Honeypot — visually hidden */
+  .hp-field {
+    position: absolute; left: -9999px; width: 1px; height: 1px;
+    overflow: hidden; opacity: 0; pointer-events: none;
+  }
 </style>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
+  const steps = form.querySelectorAll<HTMLElement>('.funnel-step');
+  const progressSteps = document.querySelectorAll<HTMLElement>('.progress-step');
+  const progressFills = document.querySelectorAll<HTMLElement>('.progress-line-fill');
+  const btnNext = form.querySelector('.btn-next') as HTMLButtonElement;
+  const btnBack = form.querySelector('.btn-back') as HTMLButtonElement;
+  const btnSubmit = form.querySelector('.btn-submit') as HTMLButtonElement;
   const btnLabel = form.querySelector('.btn-label') as HTMLElement;
   const btnSending = form.querySelector('.btn-sending') as HTMLElement;
-  const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
   const successMsg = form.querySelector('.form-success') as HTMLElement;
   const errorMsg = form.querySelector('.form-error') as HTMLElement;
   const honeypot = form.querySelector('input[name="_hp"]') as HTMLInputElement;
+  const funnel = form.querySelector('.funnel-nav') as HTMLElement;
+
+  let current = 1;
+  const total = 3;
+
+  function goToStep(step: number) {
+    if (step < 1 || step > total) return;
+
+    // Validate required fields before going forward
+    if (step > current) {
+      const currentStep = form.querySelector(`.funnel-step[data-step="${current}"]`);
+      const requiredFields = currentStep?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]');
+      let valid = true;
+      requiredFields?.forEach(f => {
+        if (!f.value.trim()) {
+          f.style.borderColor = '#ef4444';
+          valid = false;
+          f.addEventListener('input', () => { f.style.borderColor = ''; }, { once: true });
+        }
+      });
+      // Also validate email format on step 2
+      if (current === 2) {
+        const emailField = form.querySelector('input[name="email"]') as HTMLInputElement;
+        if (emailField && emailField.value && !emailField.validity.valid) {
+          emailField.style.borderColor = '#ef4444';
+          valid = false;
+          emailField.addEventListener('input', () => { emailField.style.borderColor = ''; }, { once: true });
+        }
+      }
+      if (!valid) return;
+    }
+
+    current = step;
+
+    // Update steps
+    steps.forEach(s => s.classList.remove('active'));
+    const target = form.querySelector(`.funnel-step[data-step="${step}"]`);
+    if (target) target.classList.add('active');
+
+    // Update progress indicators
+    progressSteps.forEach(ps => {
+      const psStep = parseInt(ps.dataset.step || '0');
+      ps.classList.remove('active', 'completed');
+      if (psStep === current) ps.classList.add('active');
+      else if (psStep < current) ps.classList.add('completed');
+    });
+
+    // Update progress line fills
+    progressFills.forEach((fill, i) => {
+      fill.style.width = (i < current - 1) ? '100%' : '0%';
+    });
+
+    // Update buttons
+    btnBack.style.visibility = current === 1 ? 'hidden' : 'visible';
+    if (current === total) {
+      btnNext.style.display = 'none';
+      btnSubmit.style.display = 'inline-flex';
+    } else {
+      btnNext.style.display = 'inline-flex';
+      btnSubmit.style.display = 'none';
+    }
+  }
+
+  // Click on progress step dots to navigate
+  progressSteps.forEach(ps => {
+    ps.addEventListener('click', () => {
+      const target = parseInt(ps.dataset.step || '0');
+      // Only allow going backward or to completed steps
+      if (target < current) goToStep(target);
+    });
+  });
+
+  btnNext.addEventListener('click', () => goToStep(current + 1));
+  btnBack.addEventListener('click', () => goToStep(current - 1));
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Honeypot check — if filled, silently bail (it's a bot)
+    // Honeypot check
     if (honeypot.value.trim() !== '') {
-      successMsg.style.display = 'block'; // fake success so bot doesn't retry
+      successMsg.style.display = 'block';
       form.reset();
       return;
     }
 
     btnLabel.style.display = 'none';
     btnSending.style.display = 'inline';
-    submitBtn.disabled = true;
+    btnSubmit.disabled = true;
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
 
@@ -83,6 +360,9 @@
       });
       if (res.ok) {
         successMsg.style.display = 'block';
+        funnel.style.display = 'none';
+        steps.forEach(s => s.classList.remove('active'));
+        document.querySelector('.funnel-progress')?.setAttribute('style', 'display:none');
         form.reset();
       } else {
         const body = await res.text().catch(() => '');
@@ -95,7 +375,7 @@
     } finally {
       btnLabel.style.display = 'inline';
       btnSending.style.display = 'none';
-      submitBtn.disabled = false;
+      btnSubmit.disabled = false;
     }
   });
 </script>
